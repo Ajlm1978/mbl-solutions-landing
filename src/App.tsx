@@ -211,7 +211,9 @@ function SplashScreen({ onComplete }: { onComplete: () => void }) {
     <div
       className={`fixed inset-0 z-[100] bg-white flex items-end justify-start transition-opacity duration-700 ${exiting ? 'opacity-0' : 'opacity-100'}`}
     >
-      <span className="text-7xl md:text-9xl font-bold tabular-nums p-6 md:p-10 leading-none text-black">
+      <span
+        className={`text-7xl md:text-9xl font-bold tabular-nums p-6 md:p-10 leading-none transition-colors duration-300 ${count >= 100 ? 'text-teal-600' : 'text-black'}`}
+      >
         {count}
       </span>
     </div>
@@ -336,10 +338,11 @@ function SectionHero() {
           cardRef={(el) => {
             cardRefs.current[i] = el
           }}
-          className="w-full h-14 md:h-20 shrink-0 rounded-xl md:rounded-2xl overflow-hidden relative"
+          className="w-full h-14 md:h-20 shrink-0 rounded-xl md:rounded-2xl overflow-hidden relative group cursor-default transition-transform duration-300 hover:scale-[1.01]"
           style={reveal.getAnimStyle(i)}
         >
-          <span className="flex items-center justify-center h-full text-black text-lg md:text-3xl font-bold text-center relative z-10">
+          <span className="flex items-center justify-center gap-3 h-full text-black text-lg md:text-3xl font-bold text-center relative z-10">
+            <span className="w-2 h-2 rounded-full bg-teal-600 opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300" />
             {label}
           </span>
         </MaskedCard>
@@ -361,7 +364,8 @@ function SectionHero() {
           every dollar it has earned
         </p>
         <div className="absolute bottom-5 left-3 md:bottom-8 md:left-4 z-10">
-          <span className="block text-black text-xs md:text-sm font-semibold mb-1 md:mb-2">
+          <span className="flex items-center gap-2 text-black text-xs md:text-sm font-semibold mb-1 md:mb-2">
+            <span className="w-2 h-2 rounded-full bg-teal-600 animate-pulse" />
             Trusted Medical Billing Partner
           </span>
           <h1 className="text-black text-[clamp(3rem,11vw,11rem)] font-bold leading-[0.79] tracking-tight">
@@ -372,9 +376,10 @@ function SectionHero() {
         </div>
         <a
           href="#contact"
-          className="absolute bottom-6 right-4 md:bottom-10 md:right-8 text-teal-300 text-xs md:text-sm font-semibold z-10"
+          className="group absolute bottom-6 right-4 md:bottom-10 md:right-8 text-teal-300 text-xs md:text-sm font-semibold z-10 flex items-center gap-2"
         >
           Free Billing Audit
+          <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
         </a>
       </MaskedCard>
     </section>
@@ -415,7 +420,8 @@ function SectionServices() {
           className="rounded-xl md:rounded-2xl overflow-hidden relative min-h-[160px] md:min-h-0"
           style={reveal.getAnimStyle(0)}
         >
-          <h2 className="absolute top-4 left-5 md:top-6 md:left-7 text-white md:text-black text-2xl md:text-3xl font-bold z-10">
+          <h2 className="absolute top-4 left-5 md:top-6 md:left-7 flex items-center gap-2.5 text-white md:text-black text-2xl md:text-3xl font-bold z-10">
+            <span className="w-2.5 h-2.5 rounded-full bg-teal-600" />
             Our Services
           </h2>
           <p className="absolute bottom-4 left-5 md:bottom-6 md:left-7 text-white md:text-black text-xs md:text-sm font-semibold z-10">
@@ -483,7 +489,7 @@ function SectionServices() {
             {services.map((svc) => (
               <div
                 key={svc.name}
-                className={`flex-1 min-w-[calc(50%-4px)] md:min-w-0 rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between ${svc.active ? 'bg-white/90 backdrop-blur-md' : 'bg-white/20 backdrop-blur-xl'}`}
+                className={`flex-1 min-w-[calc(50%-4px)] md:min-w-0 rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${svc.active ? 'bg-white/90 backdrop-blur-md' : 'bg-white/20 backdrop-blur-xl hover:bg-white/30'}`}
               >
                 <h3
                   className={`text-xl md:text-4xl font-bold leading-[1.05] whitespace-pre-line ${svc.active ? 'text-black' : 'text-white'}`}
@@ -512,9 +518,15 @@ function SectionServices() {
 function ArrowIcon({ white = false }: { white?: boolean }) {
   return (
     <span
-      className={`self-end w-9 h-9 md:w-12 md:h-12 rounded-full border flex items-center justify-center ${white ? 'border-white text-white' : 'border-black text-black'}`}
+      className={`self-end w-9 h-9 md:w-12 md:h-12 rounded-full border flex items-center justify-center transition-all duration-300 group-hover:bg-teal-600 group-hover:border-teal-600 group-hover:text-white ${white ? 'border-white text-white' : 'border-black text-black'}`}
     >
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="rotate-[-45deg]">
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 14 14"
+        fill="none"
+        className="rotate-[-45deg] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:rotate-0"
+      >
         <path
           d="M1 7h12m0 0L8 2m5 5L8 12"
           stroke="currentColor"
@@ -549,7 +561,10 @@ function SectionWhyMbl() {
               <br />
               MBL
             </h2>
-            <p className="text-xs md:text-sm font-semibold text-black">Compliance. Transparency. Results.</p>
+            <p className="flex items-center gap-2 text-xs md:text-sm font-semibold text-black">
+              Compliance <span className="w-1.5 h-1.5 rounded-full bg-teal-600" /> Transparency{' '}
+              <span className="w-1.5 h-1.5 rounded-full bg-teal-600" /> Results
+            </p>
           </div>
           <div className="flex gap-1.5 md:gap-2 flex-1 min-h-[140px] md:min-h-0" style={reveal.getAnimStyle(1)}>
             <div className="flex-1 rounded-xl md:rounded-2xl overflow-hidden">
@@ -586,7 +601,7 @@ function SectionWhyMbl() {
         <div className="rounded-xl md:rounded-2xl overflow-hidden relative min-h-[350px] md:min-h-0" style={reveal.getAnimStyle(3)}>
           <img src={SECTION3_BG} alt="Healthcare professional" className="w-full h-full object-cover" />
           <div className="absolute bottom-3 left-3 right-3 md:bottom-5 md:left-5 md:right-5 flex gap-1.5 md:gap-2">
-            <div className="flex-1 bg-white rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between h-36 md:h-52">
+            <div className="group flex-1 bg-white rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between h-36 md:h-52 transition-transform duration-300 hover:-translate-y-1">
               <h4 className="text-lg md:text-2xl font-bold text-black leading-5 md:leading-7">
                 How We
                 <br />
@@ -596,7 +611,7 @@ function SectionWhyMbl() {
               </h4>
               <ArrowIcon />
             </div>
-            <div className="flex-1 bg-white/20 backdrop-blur-xl rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between h-36 md:h-52">
+            <div className="group flex-1 bg-white/20 backdrop-blur-xl rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between h-36 md:h-52 transition-transform duration-300 hover:-translate-y-1">
               <h4 className="text-lg md:text-2xl font-bold text-white leading-5 md:leading-7">
                 HIPAA-
                 <br />
