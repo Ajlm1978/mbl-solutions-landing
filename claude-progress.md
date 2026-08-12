@@ -15,6 +15,11 @@
 - Nota entorno: en la máquina Windows del usuario hay que correr `npm install` local antes de `npm run dev` (node_modules no se versiona ni se comparte entre SOs).
 - Pendiente de verificación visual: preview manual 375/768/1280, contraste del link "Free Billing Audit" sobre imagen final, reduced-motion.
 
+## Sesión 1 — 2026-08-12 (continuación)
+- Repo GitHub creado por el usuario y push realizado: `github.com/Ajlm1978/mbl-solutions-landing` (branch main, remote sin credenciales).
+- Deploy directo vía conector Vercel falló (403: el conector no puede crear proyectos). Ruta elegida: importar el repo desde vercel.com/new → auto-deploy en cada push.
+- SEGURIDAD: el PAT usado se compartió por chat → debe ser REVOCADO por el usuario.
+
 ## Pendientes que NO se inventan (bloqueados por el usuario)
 - Datos de contacto reales del footer.
 - Decisión sobre stats/testimonios (riesgo FTC — ver plan §4.1).
