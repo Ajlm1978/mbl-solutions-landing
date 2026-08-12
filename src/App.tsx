@@ -160,12 +160,16 @@ type MaskedCardProps = {
 
 function MaskedCard({ bgImage, position, imageWidth, focalX, className, children, cardRef, style }: MaskedCardProps) {
   const ready = position && position.sh > 0
-  const overflow = ready && imageWidth > position.sw ? imageWidth - position.sw : 0
+  // Modo cover: si la imagen escalada a la altura de la sección no cubre el ancho,
+  // escalar por ancho (evita franjas vacías en pantallas muy anchas).
+  const coverByWidth = ready && imageWidth > 0 && imageWidth < position.sw
+  const effectiveWidth = ready ? (coverByWidth ? position.sw : imageWidth) : 0
+  const overflow = ready && effectiveWidth > position.sw ? effectiveWidth - position.sw : 0
   const focalOffset = overflow * focalX
   const bgStyle: CSSProperties = ready
     ? {
         backgroundImage: `url(${bgImage})`,
-        backgroundSize: `auto ${position.sh}px`,
+        backgroundSize: coverByWidth ? `${position.sw}px auto` : `auto ${position.sh}px`,
         backgroundPosition: `-${position.x + focalOffset}px -${position.y}px`,
         backgroundRepeat: 'no-repeat',
       }
@@ -235,12 +239,17 @@ function Navbar() {
     <>
       <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 md:px-6 py-2 md:py-3 bg-white/80 backdrop-blur-md">
         <a href="#home" className="flex flex-col">
-          <span className="text-xl md:text-2xl font-extrabold uppercase tracking-tight leading-none text-black">MBL</span>
-          <span className="text-xl md:text-2xl font-extrabold uppercase tracking-tight leading-none -mt-1.5 md:-mt-2 text-black">Solutions</span>
-          <span className="text-[8px] md:text-[9px] font-medium leading-none mt-1.5 md:mt-2 text-black">medical billing &amp; rcm</span>
+          <span className="text-2xl md:text-4xl font-extrabold uppercase tracking-tight leading-none text-black">MBL</span>
+          <span className="text-2xl md:text-4xl font-extrabold uppercase tracking-tight leading-none -mt-1.5 md:-mt-2 text-black">Solutions</span>
+          <span className="text-[10px] md:text-xs font-semibold leading-none mt-1.5 md:mt-2 text-teal-700 uppercase tracking-wide">medical billing &amp; rcm</span>
         </a>
-        <div className="hidden md:flex items-center gap-6">
-          <span className="text-sm font-semibold text-black">Free Billing Audit</span>
+        <div className="hidden md:flex items-center gap-4">
+          <a
+            href="#contact"
+            className="px-6 py-3 bg-teal-600 rounded-full text-white text-base font-bold hover:bg-teal-700 hover:scale-105 transition-all shadow-md"
+          >
+            Free Billing Consult
+          </a>
           <a
             href="#services"
             className="px-6 py-3 bg-white rounded-full border border-black text-sm font-semibold text-black hover:bg-black hover:text-white transition-colors duration-200"
@@ -291,7 +300,7 @@ function Navbar() {
               className={`mt-8 pt-8 border-t border-neutral-200 transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] ${open ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}
               style={{ transitionDelay: open ? '450ms' : '0ms' }}
             >
-              <p className="text-sm font-semibold text-black mb-4">Free Billing Audit</p>
+              <p className="text-sm font-semibold text-black mb-4">Free Billing Consult</p>
               <a
                 href="#contact"
                 onClick={() => setOpen(false)}
@@ -358,27 +367,30 @@ function SectionHero() {
         className="w-full flex-1 min-h-0 rounded-xl md:rounded-2xl overflow-hidden relative"
         style={reveal.getAnimStyle(3)}
       >
-        <p className="absolute top-4 left-4 md:top-7 md:left-7 text-black text-xs md:text-sm font-semibold leading-4 md:leading-5 max-w-[200px] md:max-w-[300px] z-10">
-          We make sure your practice collects
-          <br />
-          every dollar it has earned
-        </p>
-        <div className="absolute bottom-5 left-3 md:bottom-8 md:left-4 z-10">
-          <span className="flex items-center gap-2 text-black text-xs md:text-sm font-semibold mb-1 md:mb-2">
-            <span className="w-2 h-2 rounded-full bg-teal-600 animate-pulse" />
-            Trusted Medical Billing Partner
-          </span>
-          <h1 className="text-black text-[clamp(3rem,11vw,11rem)] font-bold leading-[0.79] tracking-tight">
-            Billing
+        {/* layout flex: imposible que el texto superior se monte sobre el H1 */}
+        <div className="relative z-10 flex h-full flex-col justify-between p-4 md:p-7">
+          <p className="text-black text-xs md:text-sm font-semibold leading-4 md:leading-5 max-w-[200px] md:max-w-[300px]">
+            We make sure your practice collects
             <br />
-            Experts
-          </h1>
+            every dollar it has earned
+          </p>
+          <div className="min-h-0">
+            <span className="flex items-center gap-2 text-black text-xs md:text-sm font-semibold mb-1 md:mb-2">
+              <span className="w-2 h-2 rounded-full bg-teal-600 animate-pulse" />
+              Trusted Medical Billing Partner
+            </span>
+            <h1 className="text-black text-[clamp(2.75rem,9.5vw,9rem)] font-bold leading-[0.79] tracking-tight">
+              Billing
+              <br />
+              Experts
+            </h1>
+          </div>
         </div>
         <a
           href="#contact"
-          className="group absolute bottom-6 right-4 md:bottom-10 md:right-8 text-teal-300 text-xs md:text-sm font-semibold z-10 flex items-center gap-2"
+          className="group absolute bottom-5 right-4 md:bottom-8 md:right-8 px-5 py-3 md:px-7 md:py-4 bg-teal-500 rounded-full text-white text-sm md:text-lg font-bold z-10 flex items-center gap-2 hover:bg-teal-400 hover:scale-105 transition-all shadow-lg"
         >
-          Free Billing Audit
+          Free Billing Consult
           <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
         </a>
       </MaskedCard>
