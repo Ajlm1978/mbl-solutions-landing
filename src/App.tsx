@@ -568,10 +568,10 @@ function SectionWhyMbl() {
           </div>
           <div className="flex gap-1.5 md:gap-2 flex-1 min-h-[140px] md:min-h-0" style={reveal.getAnimStyle(1)}>
             <div className="flex-1 rounded-xl md:rounded-2xl overflow-hidden">
-              <img src={SECTION3_IMG1} alt="Revenue analytics review" className="w-full h-full object-cover" />
+              <img src={SECTION3_IMG1} alt="Revenue growth analytics on tablet" className="w-full h-full object-cover" />
             </div>
             <div className="flex-1 rounded-xl md:rounded-2xl overflow-hidden">
-              <img src={SECTION3_IMG2} alt="Medical practice operations" className="w-full h-full object-cover" />
+              <img src={SECTION3_IMG2} alt="Insurance claims review" className="w-full h-full object-cover" />
             </div>
           </div>
           <div
@@ -599,7 +599,7 @@ function SectionWhyMbl() {
 
         {/* RIGHT COLUMN */}
         <div className="rounded-xl md:rounded-2xl overflow-hidden relative min-h-[350px] md:min-h-0" style={reveal.getAnimStyle(3)}>
-          <img src={SECTION3_BG} alt="Healthcare professional" className="w-full h-full object-cover" />
+          <img src={SECTION3_BG} alt="Revenue cycle account manager" className="w-full h-full object-cover" />
           <div className="absolute bottom-3 left-3 right-3 md:bottom-5 md:left-5 md:right-5 flex gap-1.5 md:gap-2">
             <div className="group flex-1 bg-white rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between h-36 md:h-52 transition-transform duration-300 hover:-translate-y-1">
               <h4 className="text-lg md:text-2xl font-bold text-black leading-5 md:leading-7">
