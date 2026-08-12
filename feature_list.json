@@ -1,0 +1,20 @@
+{
+  "meta": {
+    "project": "mbl-solutions-landing",
+    "verification_base": "npm run build",
+    "rule": "WIP=1. Una feature a la vez. done requiere evidencia de verificación.",
+    "priority_status": "BORRADOR — confirmado por el usuario en sesión 0 salvo F6-F9"
+  },
+  "features": [
+    { "id": "F0", "name": "Scaffold + arnés", "behavior": "npm run build pasa en repo limpio", "verify": "./init.sh", "status": "in_progress" },
+    { "id": "F1", "name": "Splash + Navbar + hooks base", "behavior": "Splash cuenta 0→100 y desaparece; navbar fija con menú móvil animado; hooks masked-cards operativos", "verify": "npm run build + preview manual 375/768/1280", "status": "in_progress" },
+    { "id": "F2", "name": "Sección Hero (masked cards)", "behavior": "3 feature bars + main card comparten HERO_IMAGE como mosaico; reveal escalonado; H1 'Billing Experts'", "verify": "npm run build + preview manual", "status": "in_progress" },
+    { "id": "F3", "name": "Sección Services (masked cards)", "behavior": "Grid 4 cards sobre SECTION2_IMAGE; strip de 4 servicios; CTA teal 'Get My Audit' → #contact", "verify": "npm run build + preview manual", "status": "in_progress" },
+    { "id": "F4", "name": "Sección Why MBL", "behavior": "Cards sólidas + 2 imágenes + columna derecha con overlays glass; CTA 'Book Online' → #contact", "verify": "npm run build + preview manual", "status": "in_progress" },
+    { "id": "F5", "name": "Sección Contact (form v1)", "behavior": "Form 5 campos + honeypot + estados; submit simulado (sin backend); footer sin datos inventados", "verify": "npm run build + preview manual con submit de prueba", "status": "in_progress" },
+    { "id": "F6", "name": "Imágenes IA definitivas", "behavior": "5 imágenes generadas según spec §2, aprobadas por el usuario, contraste de textos verificado", "verify": "preview manual + aprobación del usuario", "status": "pending" },
+    { "id": "F7", "name": "Backend leads (Supabase + email)", "behavior": "Lead de prueba llega a tabla leads Y a email de notificación", "verify": "submit end-to-end real", "status": "pending" },
+    { "id": "F8", "name": "Páginas legales", "behavior": "Privacy/Terms/HIPAA Notice como borradores marcados 'pending legal review'", "verify": "rutas navegables", "status": "pending" },
+    { "id": "F9", "name": "SEO + deploy Vercel", "behavior": "Meta/OG/JSON-LD, Lighthouse ≥90 móvil, URL pública funcionando", "verify": "lighthouse + smoke test producción", "status": "pending" }
+  ]
+}
