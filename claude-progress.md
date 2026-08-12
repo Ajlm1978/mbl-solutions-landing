@@ -2,7 +2,7 @@
 
 ## Estado Verificado Actual
 - Proyecto: scaffold Vite+React+TS+Tailwind creado (Sesión 0). Build: PENDIENTE de primera verificación.
-- Imágenes: placeholders programáticos (gradientes) — las definitivas se generan con IA y requieren aprobación del usuario.
+- Imágenes: **F6 COMPLETADA** — fotografía IA B2B (oficina RCM, account manager, claims, dashboards) provista por el usuario, texto horneado eliminado por inpainting (OpenCV, 3 pasadas con QA visual), WebP optimizado (78–196 KB c/u). Commit `8ffd059`.
 - Backend leads: NO implementado (v1 = submit simulado). Supabase = Fase 4 del plan.
 - Deploy: NO realizado.
 
